@@ -130,6 +130,24 @@
           console.log("hello " + name);
         })("Sokuji");
 
+        /**
+          タイマー関数
+        **/
+        var i = 0;
+        function show(){
+          console.log(i++);
+
+          var tid = setTimeout(function(){
+            show();
+          }, 500);
+
+          if (tid > 10){
+            clearTimeout(tid);
+          }
+        }
+        // 初回呼び出し
+        show();
+
     </script>
   </body>
 </html>
