@@ -7,6 +7,9 @@
   </head>
   <body>
 
+
+    <h1 id="test">h1</h1>
+
     <!-- <script src="myscript.js"></script> -->
 
     <script>
@@ -130,6 +133,34 @@
           console.log("hello " + name);
         })("Sokuji");
 
+        // $('.test').css({
+        //   'background-color': rgba(0,0,255,1)  // 2ハイフン形式で指定
+        // });
+
+
+
+        // ランダムにカラーを作成する関数
+        function makeColor () {
+            var rr, gg, bb,
+                r = Math.floor( Math.random() * 256 ),
+                g = Math.floor( Math.random() * 256 ),
+                b = Math.floor( Math.random() * 256 );
+
+            // 16進数へ変換
+            rr = r.toString(16);
+            gg = g.toString(16);
+            bb = b.toString(16);
+
+            return "#" + rr + gg + bb;
+        }
+
+        // 背景色を変更する関数
+        function changecolor(color) {
+            var element = document.getElementById("test");
+            element.style.backgroundColor = color;
+            element.innerHTML= color;
+        };
+
         /**
           タイマー関数
         **/
@@ -137,16 +168,21 @@
         function show(){
           console.log(i++);
 
+          // [独自] ランダムに背景色の指定を変更する。
+          var color = makeColor();
+          console.log(color);
+          changecolor(color);
+
           var tid = setTimeout(function(){
             show();
-          }, 500);
+          }, 200);
 
-          if (tid > 10){
+          if (tid > 100){
             clearTimeout(tid);
           }
         }
         // 初回呼び出し
-        show();
+       show();
 
     </script>
   </body>
