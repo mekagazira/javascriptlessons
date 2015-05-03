@@ -71,6 +71,65 @@
         console.log(i);
       }
 
+      /**
+        alert
+        confirm
+        prompt
+      **/
+        // alert("hello");"
+
+        // var answer = confirm("hogehoge");
+        // console.log(answer);
+
+        // var name = prompt("お名前は？？","ほげ");
+        // console.log(name);
+
+      /**
+        関数
+      **/
+        function hello(){
+          console.log("hello");
+        }
+
+        function helloName(name){
+          console.log("hello " + name);
+        }
+
+        hello();
+        helloName("Tom");
+        helloName("Bob");
+
+        // 引数あり
+        function helloReturn(name){
+          return("hello " + name);
+        }
+        console.log(helloReturn("Tom"));
+
+        // ローカル変数
+        // function helloName2(name){
+        //   var tmpmsg = "hello" + name;
+        //   return msg;
+        // }
+        //
+        // var greet = helloName2("Tom");
+        // console.log(greet);
+        // console.log(tmpmsg);
+
+        // 無名関数　匿名関数
+        // var hello = function(name){
+        //   return("hello " + name);
+        // };
+        // console.log(hello("Mumei"));
+
+        // 即時関数
+        (function(name){
+          // 変数を安全に使う
+          var x = 1,
+              y = 2;
+          console.log(x + y);
+          console.log("hello " + name);
+        })("Sokuji");
+
     </script>
   </body>
 </html>
