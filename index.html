@@ -177,12 +177,35 @@
             show();
           }, 200);
 
-          if (tid > 100){
+          if (tid > 3){
             clearTimeout(tid);
           }
         }
         // 初回呼び出し
        show();
+
+       /**
+          オブジェクト
+       **/
+       var user = {
+         //プロパティ
+         email: "hogehoge@hoge.com",
+         score: 80
+         //関数
+         greet : function(name){
+           console.log("hello" + name + "from " + this.email);
+         }
+
+       }
+
+       console.log(user["email"]);
+       console.log(user.score);
+       user.greet("Tom");
+
+
+
+
+
 
     </script>
   </body>
