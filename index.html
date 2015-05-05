@@ -4,11 +4,26 @@
     <meta charset="utf-8">
     <meta name="name" content="content">
     <title>JavaScriptの練習</title>
+
+    <style media="screen">
+      .myStyle{
+        font-weight:bold;
+        border:1px solid gray;
+      }
+    </style>
+
   </head>
   <body>
 
 
     <h1 id="test">h1</h1>
+
+    <h2>見出し</h2>
+    <p id="msg">
+      こんにちは！
+    </p>
+
+    <button id='add'>click!!</button>
 
     <!-- <script src="myscript.js"></script> -->
 
@@ -190,22 +205,84 @@
        var user = {
          //プロパティ
          email: "hogehoge@hoge.com",
-         score: 80
+         score: 80,
          //関数
-         greet : function(name){
+         greet: function(name){
            console.log("hello" + name + "from " + this.email);
          }
-
-       }
-
+       };
        console.log(user["email"]);
        console.log(user.score);
        user.greet("Tom");
 
+       /**
+          組み込みオブジェクト String
+       **/
+       var s = new String ("hogehoge");
+       console.log(s.length);
+       console.log(s.replace("h","H"));
+       console.log(s.substr(1,4));
 
+       /**
+          組み込みオブジェクト Array
+       **/
+       var a = new Array(100,200,300,400,500);
+       console.log(a);
+       console.log(a.length);
+       a.push(500);
+       console.log(a);
+       console.log(a.length);
+       a.splice(1,2);
+       console.log(a);
+       console.log(a.length);
+       a.splice(1,2,600,700,800);
+       console.log(a);
+       console.log(a.length);
 
+       /**
+          組み込みオブジェクト Math
+       **/
+       console.log(Math.PI);
+       console.log(Math.random());
 
+      /**
+         組み込みオブジェクト Date
+      **/
+      var d = new Date();
+      var today = new Date(2015,6,05,10,55,30)
+      console.log(d.getFullYear());
+      console.log(d.getMonth());
+      console.log(d.getTime());
 
+      /**
+         DOM
+      **/
+      // オブジェクトのプロパティを表示
+      console.dir(window);
+      console.log(window.outerHeight);
+      //window.location.href='https://developer.mozilla.org/ja/'
+
+      // スタイルの変更
+      var e = document.getElementById('msg');
+      e.style.color = 'red';
+      e.textContent = 'hello!'
+      e.className = 'myStyle';
+
+      // 要素の追加
+      var greet = document.createElement('p'),
+          text = document.createTextNode('Hello World!');
+
+      document.body.appendChild(greet).appendChild(text);
+
+      /**
+        イベントの設定
+      **/
+      document.getElementById('add').addEventListener('click',function(){
+        // 要素の追加
+        var greet = document.createElement('p'),
+            text = document.createTextNode('Hello World!');
+        document.body.appendChild(greet).appendChild(text);
+      });
 
     </script>
   </body>
