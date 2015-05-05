@@ -8,3 +8,5 @@ javascriptlessons
     初めてのjavascript
 +   `index2.html` :
     JavaScriptで作るスロットマシーン
++   `index3.html` :
+    JavaScriptで作るストップウォッチ
