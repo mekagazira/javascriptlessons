@@ -6,3 +6,5 @@ javascriptlessons
 ------
 +   `index.html` :
     初めてのjavascript
++   `index2.html` :
+    JavaScriptで作るスロットマシーン
