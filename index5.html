@@ -16,112 +16,87 @@
       Time：<span id="time">0.0</span>sec
     </p>
 
-    <div id="board">
-      <input type="button" id="button_1" value="?">
-      <input type="button" id="button_2" value="?">
-      <input type="button" id="button_3" value="?"><br>
-      <input type="button" id="button_4" value="?">
-      <input type="button" id="button_5" value="?">
-      <input type="button" id="button_6" value="?"><br>
-      <input type="button" id="button_7" value="?">
-      <input type="button" id="button_8" value="?">
-      <input type="button" id="button_9" value="?"><br>
-    </div>
+    <div id="board"></div>
 
     <input type="button" value="Start!" id="start">
 
 
     <script>
+    (function(){
+        var currentNum,
+            timer,
+            startTime,
+            isplaying = false,
+            size=4;
 
-      var currentNum,
-          timer,
-          startTime,
-          isplaying = false;
+        document.getElementById('start').onclick = function(){
+          timerStart();
+        };
 
-      document.getElementById('start').onclick = function(){
-        timerStart();
-      };
+        function timerStart(){
+          initBoard();
+          currentNum = 0;
+          startTime = (new Date()).getTime();
 
-      document.getElementById('button_1').onclick = function(){
-        touched(1);
-      };
-
-      document.getElementById('button_2').onclick = function(){
-        touched(2);
-      };
-
-      document.getElementById('button_3').onclick = function(){
-        touched(3);
-      };
-
-      document.getElementById('button_4').onclick = function(){
-        touched(4);
-      };
-
-      document.getElementById('button_5').onclick = function(){
-        touched(5);
-      };
-
-      document.getElementById('button_6').onclick = function(){
-        touched(6);
-      };
-
-      document.getElementById('button_7').onclick = function(){
-        touched(7);
-      };
-
-      document.getElementById('button_8').onclick = function(){
-        touched(8);
-      };
-
-      document.getElementById('button_9').onclick = function(){
-        touched(9);
-      };
-
-      function timerStart(){
-        initBoard();
-        currentNum = 1;
-        startTime = (new Date()).getTime();
-
-        if(!isplaying){
-          isplaying = true;
-          runTimer();
+          if(!isplaying){
+            isplaying = true;
+            runTimer();
+          }
         }
-      }
 
-      function initBoard(){
-        var nums = [1,2,3,4,5,6,7,8,9];
-        var num;
-        var btn;
 
-        for (var i=1; i<10; i++){
-          num = nums.splice(Math.floor(Math.random() * nums.length), 1);
-          btn = document.getElementById('button_' + i);
-          btn.value = num[0];
+        function createButton(num){
+          var btn;
+          btn = document.createElement('input');
+          btn.type = 'button';
+          btn.value = num;
           btn.disabled = false;
+          btn.onclick = function(){
+            if(this.value == currentNum){
+              this.disabled = true;
+              currentNum++;
+            }
+
+            if(currentNum == size * size){
+              clearTimeout(timer);
+              alert("your score:" + document.getElementById("time").innerHTML);
+              isplaying = false;
+            }
+          };
+          return btn;
         }
-      }
 
-      function touched(n){
-        var btn = document.getElementById('button_'+n);
-        if(btn.value == currentNum){
-          btn.disabled = true;
-          currentNum++;
+
+        function initBoard(){
+          var buttons = [];
+          var board;
+          var button;
+
+          for(var i = 0; i < size * size; i++){
+            buttons.push(createButton(i));
+          }
+
+          borad = document.getElementById("board");
+
+          while(borad.firstChild){
+            borad.removeChild(borad.firstChild);
+          }
+
+          while(buttons.length){
+            button = buttons.splice(Math.floor(Math.random() * buttons.length),1);
+            borad.appendChild(button[0]);
+
+            if(buttons.length % size == 0){
+              borad.appendChild(document.createElement('br'));
+            }
+          }
         }
 
-        if(currentNum == 10){
-          clearTimeout(timer);
-          alert("your score:" + document.getElementById("time").innerHTML);
-          isplaying = false;
+        function runTimer(){
+          document.getElementById('time').innerHTML = (((new Date()).getTime() - startTime)/1000).toFixed(1);
+          timer = setTimeout(function(){runTimer()},100)
         }
-
-      }
-
-      function runTimer(){
-        document.getElementById('time').innerHTML = (((new Date()).getTime() - startTime)/1000).toFixed(1);
-        timer = setTimeout(function(){runTimer()},100)
-      }
-
+    })();
     </script>
 
   </body>
