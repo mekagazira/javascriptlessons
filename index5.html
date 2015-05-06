@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>数字タッチゲーム</title>
+    <style>
+      #board > input{
+        width:40px;
+        margin-right:5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>小さい数字からタッチ！</h1>
+    <p>
+      Time：<span id="time">0.0</span>sec
+    </p>
+
+    <div id="board">
+      <input type="button" id="button_1" value="?">
+      <input type="button" id="button_2" value="?">
+      <input type="button" id="button_3" value="?"><br>
+      <input type="button" id="button_4" value="?">
+      <input type="button" id="button_5" value="?">
+      <input type="button" id="button_6" value="?"><br>
+      <input type="button" id="button_7" value="?">
+      <input type="button" id="button_8" value="?">
+      <input type="button" id="button_9" value="?"><br>
+    </div>
+
+    <input type="button" value="Start!" id="start">
+
+
+    <script>
+
+      var currentNum,
+          timer,
+          startTime,
+          isplaying = false;
+
+      document.getElementById('start').onclick = function(){
+        timerStart();
+      };
+
+      document.getElementById('button_1').onclick = function(){
+        touched(1);
+      };
+
+      document.getElementById('button_2').onclick = function(){
+        touched(2);
+      };
+
+      document.getElementById('button_3').onclick = function(){
+        touched(3);
+      };
+
+      document.getElementById('button_4').onclick = function(){
+        touched(4);
+      };
+
+      document.getElementById('button_5').onclick = function(){
+        touched(5);
+      };
+
+      document.getElementById('button_6').onclick = function(){
+        touched(6);
+      };
+
+      document.getElementById('button_7').onclick = function(){
+        touched(7);
+      };
+
+      document.getElementById('button_8').onclick = function(){
+        touched(8);
+      };
+
+      document.getElementById('button_9').onclick = function(){
+        touched(9);
+      };
+
+      function timerStart(){
+        initBoard();
+        currentNum = 1;
+        startTime = (new Date()).getTime();
+
+        if(!isplaying){
+          isplaying = true;
+          runTimer();
+        }
+      }
+
+      function initBoard(){
+        var nums = [1,2,3,4,5,6,7,8,9];
+        var num;
+        var btn;
+
+        for (var i=1; i<10; i++){
+          num = nums.splice(Math.floor(Math.random() * nums.length), 1);
+          btn = document.getElementById('button_' + i);
+          btn.value = num[0];
+          btn.disabled = false;
+        }
+      }
+
+      function touched(n){
+        var btn = document.getElementById('button_'+n);
+        if(btn.value == currentNum){
+          btn.disabled = true;
+          currentNum++;
+        }
+
+        if(currentNum == 10){
+          clearTimeout(timer);
+          alert("your score:" + document.getElementById("time").innerHTML);
+          isplaying = false;
+        }
+
+      }
+
+      function runTimer(){
+        document.getElementById('time').innerHTML = (((new Date()).getTime() - startTime)/1000).toFixed(1);
+        timer = setTimeout(function(){runTimer()},100)
+      }
+
+    </script>
+
+  </body>
+</html>

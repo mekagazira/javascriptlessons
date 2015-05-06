@@ -12,3 +12,5 @@ javascriptlessons
     JavaScriptで作るストップウォッチ
 +   `index4.html` :
     JavaScriptで作る割り勘電卓
++   `index5.html` :
+    JavaScriptで作る数字タッチゲーム
