@@ -10,3 +10,5 @@ javascriptlessons
     JavaScriptで作るスロットマシーン
 +   `index3.html` :
     JavaScriptで作るストップウォッチ
++   `index4.html` :
+    JavaScriptで作る割り勘電卓
