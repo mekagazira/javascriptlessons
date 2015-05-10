@@ -14,3 +14,5 @@ javascriptlessons
     JavaScriptで作る割り勘電卓
 +   `index5.html` :
     JavaScriptで作る数字タッチゲーム
++   `index6.html` :
+    JavaScriptで作る神経衰弱
