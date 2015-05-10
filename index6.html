@@ -51,6 +51,8 @@
           }
 
           card.value = card.dataset.num;
+          card.style.backgroundColor = "#FFFF00";
+
           if( typeof currentNum == 'undefined'){
             // 1枚目
             openedCard = card;
@@ -67,6 +69,8 @@
           if(currentNum ==  card.dataset.num){
             // 正解処理
             correntNum++;
+            card.style.backgroundColor = "#696969";
+            openedCard.style.backgroundColor = "#696969";
 
             if(correntNum == CARD_NUM / 2){
               clearTimeout(timerId);
@@ -79,6 +83,9 @@
               openedCard.value = '?'
               card.value = '?'
               enableFlip=true;
+              // 背景色を戻す
+              card.style.backgroundColor = "#FFFFFF";
+              openedCard.style.backgroundColor = "#FFFFFF";
             },700 )
           }
         }
